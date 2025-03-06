@@ -1,0 +1,100 @@
+<view class="container">
+  <view class="mode-switch">
+    <view class="{{currentMode === 'dlt' ? 'mode-button active' : 'mode-button'}}" bindtap="switchMode" data-mode="dlt">大乐透模式</view>
+    <view class="{{currentMode === 'ssq' ? 'mode-button active' : 'mode-button'}}" bindtap="switchMode" data-mode="ssq">双色球模式</view>
+  </view>
+  
+  <view class="mode-info">
+    当前模式：{{currentMode === 'dlt' ? '大乐透（前区1-35选5，后区1-12选2）' : '双色球（前区1-33选6，后区1-16选1）'}}
+  </view>
+  
+  <view class="section">
+    <view class="section-title">历史数据输入</view>
+    <view>请输入历史开奖号码，每行一组，格式：前区数字，后区数字</view>
+    <view class="example-format">
+      {{currentMode === 'dlt' ? '例如：03 12 18 25 33 05 11 或 03,12,18,25,33,05,11' : '例如：01 11 15 25 26 33 16 或 01,11,15,25,26,33,16'}}
+    </view>
+    <view class="example-format">
+      <text bindtap="openOfficialData">查看官方{{currentMode === 'dlt' ? '大乐透' : '双色球'}}历史开奖数据 →</text>
+    </view>
+    <textarea class="history-input" placeholder="输入历史开奖号码，每行一组..." bindinput="onHistoryDataInput" value="{{historyData}}"></textarea>
+    <view class="error-message" wx:if="{{dataError}}">{{dataError}}</view>
+    <view class="button-group">
+      <button class="primary-button" bindtap="analyzeData">分析数据</button>
+      <button class="secondary-button" bindtap="clearData">清空数据</button>
+    </view>
+  </view>
+  
+  <view class="section" wx:if="{{dataAnalyzed}}">
+    <view class="section-title">数据分析</view>
+    <view class="stats-container">
+      <view class="stats-section">
+        <view class="stats-title">前区号码频率</view>
+        <view class="number-stats">
+          <view class="number-stat" wx:for="{{frontStatsArray}}" wx:key="number">
+            <view class="number-value">{{item.number}}</view>
+            <view>{{item.frequency}}</view>
+            <view class="frequency-bar">
+              <view class="frequency-fill" style="width: {{item.percentage}}%"></view>
+            </view>
+          </view>
+        </view>
+      </view>
+      <view class="stats-section">
+        <view class="stats-title">后区号码频率</view>
+        <view class="back-number-stats">
+          <view class="number-stat" wx:for="{{backStatsArray}}" wx:key="number">
+            <view class="number-value">{{item.number}}</view>
+            <view>{{item.frequency}}</view>
+            <view class="frequency-bar">
+              <view class="frequency-fill back-frequency-fill" style="width: {{item.percentage}}%"></view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+  
+  <view class="section" wx:if="{{dataAnalyzed}}">
+    <view class="section-title">号码生成</view>
+    <view class="button-group">
+      <button class="primary-button" bindtap="generateNumbers" disabled="{{finalNumbersGenerated}}">生成号码</button>
+      <button class="primary-button" bindtap="generateFinalNumbers" disabled="{{!canGenerateFinal}}">智能合成最终号码</button>
+      <button class="secondary-button" bindtap="resetGenerationHistory">重置</button>
+    </view>
+    
+    <view class="result-container" wx:if="{{generationHistory.length > 0}}">
+      <view class="section-title">生成结果</view>
+      <view class="lottery-numbers">
+        <view class="lottery-row" wx:for="{{generationHistory}}" wx:key="index">
+          <view class="row-index">第{{index+1}}组:</view>
+          <view class="ball front-ball" wx:for="{{item.front}}" wx:for-item="num" wx:key="*this">{{num < 10 ? '0' + num : num}}</view>
+          <view class="separator">|</view>
+          <view class="ball back-ball" wx:for="{{item.back}}" wx:for-item="num" wx:key="*this">{{num < 10 ? '0' + num : num}}</view>
+        </view>
+      </view>
+      
+      <view class="final-result" wx:if="{{finalNumbersGenerated}}">
+        <view class="final-title">【最终号码-{{currentMode === 'dlt' ? '大乐透' : '双色球'}}】</view>
+        <view class="final-numbers">
+          <view class="final-ball final-front-ball" wx:for="{{finalNumbers.front}}" wx:key="*this">
+            {{item < 10 ? '0' + item : item}}
+            <text wx:if="{{finalNumbers.frontHighFreq.includes(item)}}" class="high-freq-mark">★</text>
+            <text wx:if="{{finalNumbers.coldFront === item}}" class="cold-mark">❄</text>
+          </view>
+          <view class="final-separator">|</view>
+          <view class="final-ball final-back-ball" wx:for="{{finalNumbers.back}}" wx:key="*this">
+            {{item < 10 ? '0' + item : item}}
+            <text wx:if="{{finalNumbers.backHighFreq.includes(item)}}" class="high-freq-mark">★</text>
+            <text wx:if="{{finalNumbers.coldBack === item}}" class="cold-mark">❄</text>
+          </view>
+        </view>
+        <view class="final-logic">
+          <view>前区：{{finalLogicFront}}</view>
+          <view>后区：{{finalLogicBack}}</view>
+          <view>{{finalLogicExplanation}}</view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

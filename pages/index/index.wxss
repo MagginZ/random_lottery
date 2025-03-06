@@ -1,0 +1,282 @@
+.container {
+  padding: 20rpx;
+}
+
+.mode-switch {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 40rpx;
+}
+
+.mode-button {
+  padding: 20rpx 40rpx;
+  border: 4rpx solid #e74c3c;
+  background-color: white;
+  color: #e74c3c;
+  font-weight: bold;
+  transition: all 0.3s;
+}
+
+.mode-button.active {
+  background-color: #e74c3c;
+  color: white;
+}
+
+.mode-button:first-child {
+  border-radius: 8rpx 0 0 8rpx;
+}
+
+.mode-button:last-child {
+  border-radius: 0 8rpx 8rpx 0;
+}
+
+.mode-info {
+  text-align: center;
+  margin-bottom: 30rpx;
+  font-size: 28rpx;
+  color: #777;
+}
+
+.section {
+  background-color: white;
+  border-radius: 16rpx;
+  padding: 30rpx;
+  box-shadow: 0 4rpx 20rpx rgba(0, 0, 0, 0.1);
+  margin-bottom: 40rpx;
+}
+
+.section-title {
+  font-weight: bold;
+  margin-bottom: 20rpx;
+  color: #e74c3c;
+  font-size: 32rpx;
+}
+
+.example-format {
+  font-size: 24rpx;
+  color: #777;
+  margin-top: 10rpx;
+  margin-bottom: 10rpx;
+}
+
+.history-input {
+  width: 100%;
+  height: 200rpx;
+  padding: 20rpx;
+  border: 2rpx solid #ddd;
+  border-radius: 8rpx;
+  margin: 20rpx 0;
+  box-sizing: border-box;
+}
+
+.error-message {
+  color: #e74c3c;
+  margin: 20rpx 0;
+  font-size: 28rpx;
+}
+
+.button-group {
+  display: flex;
+  gap: 20rpx;
+  margin: 30rpx 0;
+  flex-wrap: wrap;
+}
+
+.primary-button {
+  background-color: #e74c3c;
+  color: white;
+  border: none;
+  padding: 20rpx 30rpx;
+  border-radius: 8rpx;
+  font-size: 28rpx;
+}
+
+.primary-button[disabled] {
+  background-color: #ccc;
+  color: #999;
+}
+
+.secondary-button {
+  background-color: #3498db;
+  color: white;
+  border: none;
+  padding: 20rpx 30rpx;
+  border-radius: 8rpx;
+  font-size: 28rpx;
+}
+
+.stats-container {
+  display: flex;
+  flex-direction: column;
+  gap: 40rpx;
+  margin-top: 20rpx;
+}
+
+.stats-title {
+  font-weight: bold;
+  margin-bottom: 20rpx;
+}
+
+.number-stats {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 10rpx;
+}
+
+.back-number-stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10rpx;
+}
+
+.number-stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10rpx;
+  border: 2rpx solid #eee;
+  border-radius: 8rpx;
+}
+
+.number-value {
+  font-weight: bold;
+}
+
+.frequency-bar {
+  width: 100%;
+  height: 10rpx;
+  background-color: #eee;
+  margin-top: 10rpx;
+  position: relative;
+}
+
+.frequency-fill {
+  position: absolute;
+  height: 100%;
+  background-color: #e74c3c;
+}
+
+.back-frequency-fill {
+  background-color: #3498db;
+}
+
+.lottery-numbers {
+  display: flex;
+  flex-direction: column;
+  gap: 30rpx;
+  margin-top: 30rpx;
+}
+
+.lottery-row {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.row-index {
+  width: 100rpx;
+  font-weight: bold;
+  margin-right: 20rpx;
+}
+
+.ball {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 50rpx;
+  height: 50rpx;
+  border-radius: 50%;
+  font-weight: bold;
+  color: white;
+  margin: 0 10rpx;
+}
+
+.front-ball {
+  background-color: #e74c3c;
+}
+
+.back-ball {
+  background-color: #3498db;
+}
+
+.separator {
+  font-weight: bold;
+  font-size: 40rpx;
+  margin: 0 20rpx;
+}
+
+.final-result {
+  margin-top: 40rpx;
+  padding: 20rpx;
+  border: 2rpx solid #e74c3c;
+  border-radius: 8rpx;
+  background-color: #fff9f9;
+}
+
+.final-title {
+  font-size: 36rpx;
+  font-weight: bold;
+  margin-bottom: 30rpx;
+  color: #e74c3c;
+  text-align: center;
+}
+
+.final-numbers {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 30rpx;
+}
+
+.final-ball {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 50rpx;
+  height: 50rpx;
+  border-radius: 50%;
+  font-weight: bold;
+  color: white;
+  margin: 0 10rpx;
+  font-size: 36rpx;
+  position: relative;
+}
+
+.final-front-ball {
+  background-color: #e74c3c;
+}
+
+.final-back-ball {
+  background-color: #3498db;
+}
+
+.final-separator {
+  font-weight: bold;
+  font-size: 48rpx;
+  margin: 0 30rpx;
+}
+
+.high-freq-mark {
+  position: absolute;
+  top: -10rpx;
+  right: -10rpx;
+  color: #f1c40f;
+  font-size: 28rpx;
+}
+
+.cold-mark {
+  position: absolute;
+  bottom: -10rpx;
+  right: -10rpx;
+  color: #3498db;
+  font-size: 28rpx;
+}
+
+.final-logic {
+  margin-top: 30rpx;
+  padding: 20rpx;
+  background-color: #f9f9f9;
+  border-radius: 10rpx;
+  border-left: 6rpx solid #e74c3c;
+  font-size: 28rpx;
+}
